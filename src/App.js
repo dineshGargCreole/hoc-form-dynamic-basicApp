@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import DynamicForm from './component/DynamicForm';
 
 function App() {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    for(let i=0; i<e.target.length-1; i++) {
+      console.log(`${e.target[i].name} : ${e.target[i].value}`)
+    }
+    e.target.reset()
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>... App</h2>
+
+      <form onSubmit={handleSubmit}>
+        <DynamicForm field1='firstName' field2='lastName' />
+        <DynamicForm field1='phone' field2='city' />
+
+        <input type='submit' value='Submit' />
+      </form>
     </div>
   );
 }
